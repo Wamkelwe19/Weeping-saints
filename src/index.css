@@ -1,0 +1,76 @@
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Your custom CSS can go below */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700&display=swap');
+
+/* Basic CSS reset and global styles */
+body, html, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Arial', sans-serif;
+  background-color: #000;
+  color: #fff;
+}
+
+/* Gold color CSS variables */
+:root {
+  --gold-50: #fffdf7;
+  --gold-100: #fef7cd;
+  --gold-200: #fde68a;
+  --gold-300: #fcd34d;
+  --gold-400: #f59e0b;
+  --gold-500: #d97706;
+  --gold-600: #b45309;
+}
+
+/* Gold text colors */
+.text-gold-300 { color: var(--gold-300); }
+.text-gold-400 { color: var(--gold-400); }
+.text-gold-500 { color: var(--gold-500); }
+.text-gold-600 { color: var(--gold-600); }
+
+/* Gold background colors */
+.bg-gold-100 { background-color: var(--gold-100); }
+.bg-gold-200 { background-color: var(--gold-200); }
+
+/* Gradient color variables */
+.from-gold-300 { --tw-gradient-from: var(--gold-300); }
+.to-gold-400 { --tw-gradient-to: var(--gold-400); }
+.to-gold-500 { --tw-gradient-to: var(--gold-500); }
+.via-gold-300 { --tw-gradient-via: var(--gold-300); }
+.via-gold-400 { --tw-gradient-via: var(--gold-400); }
+
+/* Gold border color */
+.border-gold-600 { border-color: var(--gold-600); }
+
+/* Hover states */
+.hover\:text-gold-400:hover { color: var(--gold-400); }
+.hover\:text-gold-600:hover { color: var(--gold-600); }
+.hover\:from-gold-200:hover { --tw-gradient-from: var(--gold-200); }
+.hover\:to-gold-200:hover { --tw-gradient-to: var(--gold-200); }
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gold-400);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-500);
+}
+
