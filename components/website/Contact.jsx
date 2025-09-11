@@ -1,8 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Instagram, ArrowUpRight } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 export default function Contact() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+  const [status, setStatus] = useState('');
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', formData, 'YOUR_USER_ID')
+      .then((response) => {
+        setStatus('Message sent successfully!');
+        setFormData({ name: '', email: '', message: '' });
+      })
+      .catch((error) => {
+        setStatus('Failed to send message. Please try again later.');
+      });
+  };
+
   return (
     <section className="py-32 bg-gradient-to-br from-slate-900 via-slate-800 to-black relative overflow-hidden">
       {/* Background elements */}
@@ -31,6 +56,60 @@ export default function Contact() {
             Reach out and let's begin crafting your unforgettable story.
           </p>
         </motion.div>
+
+        <form onSubmit={handleSubmit} className="max-w-4xl mx-auto mb-16">
+          <div className="grid md:grid-cols-2 gap-8 mb-8">
+            <div>
+              <label className="block text-white mb-2 text-lg font-light">Name</label>
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+                className="w-full p-4 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 text-white placeholder-slate-400 focus:border-amber-400/30 focus:outline-none transition-all duration-300"
+                placeholder="Your name"
+              />
+            </div>
+            <div>
+              <label className="block text-white mb-2 text-lg font-light">Email</label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                className="w-full p-4 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 text-white placeholder-slate-400 focus:border-amber-400/30 focus:outline-none transition-all duration-300"
+                placeholder="your.email@example.com"
+              />
+            </div>
+          </div>
+          <div className="mb-8">
+            <label className="block text-white mb-2 text-lg font-light">Message</label>
+            <textarea
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              required
+              rows="6"
+              className="w-full p-4 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 text-white placeholder-slate-400 focus:border-amber-400/30 focus:outline-none transition-all duration-300"
+              placeholder="Tell us about your project..."
+            />
+          </div>
+          <div className="text-center">
+            <button 
+              type="submit" 
+              className="bg-gradient-to-r from-amber-400 to-gold-400 text-black py-4 px-12 rounded-2xl font-semibold text-lg hover:from-amber-300 hover:to-gold-300 transform hover:scale-105 transition-all duration-300"
+            >
+              Send Message
+            </button>
+            {status && (
+              <p className={`mt-6 text-lg ${status.includes('successfully') ? 'text-amber-400' : 'text-red-400'}`}>
+                {status}
+              </p>
+            )}
+          </div>
+        </form>
 
         <div className="max-w-4xl mx-auto">
           <div className="grid md:grid-cols-2 gap-8">
