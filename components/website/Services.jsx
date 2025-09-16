@@ -82,6 +82,7 @@ export default function Services() {
           transition={{ duration: 1 }}
           viewport={{ once: true }}
         >
+            <img src="/weeping.png" alt="Logo" className="mx-auto" />
           <h2 className="text-5xl md:text-7xl font-light text-slate-900 mb-6 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
             Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-gold-500">Services</span>
           </h2>
